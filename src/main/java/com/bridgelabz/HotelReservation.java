@@ -1,30 +1,23 @@
 package com.bridgelabz;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class HotelReservation implements IHotelReservation{
-	String hotelName;
-	int rating;
-	double regularCustomerRate;
-	Scanner sc = new Scanner(System.in);
 	ArrayList<HotelDetails> hotelList = new ArrayList<HotelDetails>();
-	HotelDetails hotel;
-	public void addHotel() {
-		System.out.println("How many hotels you want to add");
-		int numOfHotels = sc.nextInt();
-		while(numOfHotels > 0) {
-			System.out.println("Enter hotel name:");
-			hotelName = sc.next();
-			System.out.println("Enter hotel rating:");
-			rating = sc.nextInt();
-			System.out.println("Enter regular customer rate:");
-			regularCustomerRate = sc.nextDouble();
-			hotel = new HotelDetails(hotelName,rating,regularCustomerRate);
-			hotelList.add(hotel);
-			numOfHotels--;
-		}
+	HotelDetails hotel ;
+
+	public void addHotel(String hotelName, int rating, double weekdayRate, double weekndRate) {
+		hotel = new HotelDetails();
+		hotel.setHotelName(hotelName);
+		hotel.setRating(rating);
+		hotel.setWeekDayRate(weekdayRate);
+		hotel.setWeekendRate(weekndRate);
+		hotelList.add(hotel);
 	}
+	
 	public int getHotelListSize() {
 		return hotelList.size();
 	}
@@ -32,5 +25,10 @@ public class HotelReservation implements IHotelReservation{
 	public void printHotelList() {
 		System.out.println(hotelList);
 	}
+	
+	public ArrayList<HotelDetails> getHotelList(){
+		return hotelList;
+	}
+
 	
 }
