@@ -1,5 +1,9 @@
 package com.bridgelabz;
 
 public interface IHotelReservation {
-	 void addHotelDetails(); 
+	public void addHotel();
+
+	public int getHotelListSize();
+
+	public void printHotelList();
 }
