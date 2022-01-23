@@ -53,17 +53,25 @@ public class HotelReservation implements IHotelReservation {
 
 		final int weekdaysNumber = numberOfDays - weekends;
 		final int weekendsNumber = weekends;
-
+		
 		int cheapestRate = (int) (hotelList.get(0).getWeekDayRate() + hotelList.get(0).getWeekendRate());
-		String cheapestHotel = hotelList.get(0).getHotelName();
+		String cheapestHotel=hotelList.get(0).getHotelName();
+		int maxRating = hotelList.get(0).getRating();
 		for (HotelDetails hotel : hotelList) {
-			int rateForHotel = (int) ((weekdaysNumber * hotel.getWeekDayRate())
-					+ (weekendsNumber * hotel.getWeekendRate()));
-			if (rateForHotel < cheapestRate) {
-				cheapestRate = rateForHotel;
-				cheapestHotel = hotel.getHotelName();
-			}
-		}
+		            int rateForHotel = (int) ((weekdaysNumber * hotel.getWeekDayRate())
+		                    + (weekendsNumber * hotel.getWeekendRate()));
+		            int ratingForHotel=hotel.getRating();
+		            if (rateForHotel < cheapestRate){
+		                cheapestRate = rateForHotel;
+		                cheapestHotel = hotel.getHotelName();
+		                maxRating=ratingForHotel;
+		            } else if (rateForHotel == cheapestRate) {
+		                if(hotel.getRating()>maxRating) {
+		                    cheapestHotel = hotel.getHotelName();
+		                    maxRating=ratingForHotel;
+		                }
+		            }
+		 }
 
 		System.out.println("Cheapest Hotel : \n" + cheapestHotel + ", Total Rates: " + cheapestRate);
 		return cheapestHotel;
